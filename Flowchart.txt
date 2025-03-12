@@ -1,0 +1,53 @@
+Start
+  |
+  V
+Input: numberOfChars
+  |
+  V
+Calculate NON = 2 ** numberOfChars
+Initialize: index = 0, numbers = [], gray = [""] * NON
+  |
+  V
+Function: generate(n)
+  |--> Loop: for t in range(0, int(n/2)):
+  |         Add "0" to gray[t]
+  |
+  |--> Loop: for f in range(int(n-1), int(n/2)-1, -1):
+  |         Add "1" to gray[f]
+  |
+  |--> If n >= 3:
+  |         Recursive call: generate(n / 2)
+  |
+Return from generate(n)
+  |
+  V
+Call: generate(NON)
+  |
+  V
+Outer Loop: for r in range(numberOfChars-1, 0, -1)
+  |--> Nested Loop: for k in range(numberOfChars - r)
+  |         Add (numberOfChars - k - 1) to numbers
+  |
+  |--> Sort: numbers
+  |
+  |--> Loop: for g in numbers
+  |         Call: finalize(start, stop, ind)
+  |             |
+  |             V
+  |             Function: finalize(start, stop, ind)
+  |             |--> Loop: for f in range(start-1, stop-1, -1)
+  |                     Append values from mirrored indices of gray
+  |             Return from finalize()
+  |
+  |--> Reset numbers = []
+  |
+Continue outer loop until complete
+  |
+  V
+Print: gray array
+  |
+  V
+Print: final Gray code values
+  |
+  V
+End
